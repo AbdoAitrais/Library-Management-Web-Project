@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+
+body {
+    background-color: white;
+    font-family:'Source Sans Pro', sans-serif;
+    margin:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin:0;
+}
+
+.container {
+    max-width: 80%;
+    display:flex;
+    align-items:center;
+    min-height:100vh;
+}
+.form{
+    margin-right: 2.5%;
+}
+.navbar .bg-body-tertiary{
+    background-color: black!important;
+    color: white!important;
+
+}
+.navbar-brand:hover{
+    border-bottom: solid black 2px;
+}
