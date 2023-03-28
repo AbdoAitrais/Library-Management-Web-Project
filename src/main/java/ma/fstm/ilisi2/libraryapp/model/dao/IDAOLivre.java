@@ -10,5 +10,5 @@ public interface IDAOLivre {
     Collection<Livre> retrieve();
     boolean update(Livre L);
     boolean delete(Livre L);
-    Livre findById(String isbn);
+    Livre findById(int id);
 }

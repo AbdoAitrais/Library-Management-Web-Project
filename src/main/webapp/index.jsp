@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${not empty account}">
     <%
-        response.sendRedirect(request.getContextPath()+"/biblio");
+        response.sendRedirect(request.getContextPath()+"/Livre.do");
     %>
 </c:if>
     <!DOCTYPE html>
@@ -14,24 +14,24 @@
 
     <link rel="icon" type="image/png" href="https://colorlib.com/etc/lf/Login_v14/images/icons/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/icon-font.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/animate.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/animate.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/hamburgers.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/animsition.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/select2.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/daterangepicker.css">
 
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/util.css">
-    <link rel="stylesheet" type="text/css" href="../Login%20V14_files/main.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/util.css">
+    <link rel="stylesheet" type="text/css" href="Login V14_files/main.css">
 
     <meta name="robots" content="noindex, follow">
     <style type="text/css" id="operaUserStyle"></style>
@@ -85,23 +85,23 @@
         </div>
         <div id="dropDownSelect1"></div>
 
-    <script type="text/javascript" async="" src="../Login%20V14_files/analytics.js.download"></script><script src="../Login%20V14_files/jquery-3.2.1.min.js.download"></script>
+    <script type="text/javascript" async="" src="Login V14_files/analytics.js.download"></script><script src="Login V14_files/jquery-3.2.1.min.js.download"></script>
 
-    <script src="../Login%20V14_files/animsition.min.js.download"></script>
+    <script src="Login V14_files/animsition.min.js.download"></script>
 
-    <script src="../Login%20V14_files/popper.js.download"></script>
-    <script src="../Login%20V14_files/bootstrap.min.js.download"></script>
+    <script src="Login V14_files/popper.js.download"></script>
+    <script src="Login V14_files/bootstrap.min.js.download"></script>
 
-    <script src="../Login%20V14_files/select2.min.js.download"></script>
+    <script src="Login V14_files/select2.min.js.download"></script>
 
-    <script src="../Login%20V14_files/moment.min.js.download"></script>
-    <script src="../Login%20V14_files/daterangepicker.js.download"></script>
+    <script src="Login V14_files/moment.min.js.download"></script>
+    <script src="Login V14_files/daterangepicker.js.download"></script>
 
-    <script src="../Login%20V14_files/countdowntime.js.download"></script>
+    <script src="Login V14_files/countdowntime.js.download"></script>
 
-    <script src="../Login%20V14_files/main.js.download"></script>
+    <script src="Login V14_files/main.js.download"></script>
 
-    <script async="" src="../Login%20V14_files/js"></script>
+    <script async="" src="Login V14_files/js"></script>
     <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -109,7 +109,7 @@
 
           gtag('config', 'UA-23581568-13');
         </script>
-    <script defer="" src="../Login%20V14_files/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;7a5ac09f2c5469ba&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.2.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+    <script defer="" src="Login V14_files/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;7a5ac09f2c5469ba&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.2.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
 
 
     </body></html>

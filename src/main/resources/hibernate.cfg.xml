@@ -8,7 +8,7 @@
         <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="connection.username">abdo</property>
         <property name="connection.password">123</property>
-        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="ma.fstm.ilisi2.libraryapp.model.bo.Adherent"/>
         <mapping class="ma.fstm.ilisi2.libraryapp.model.bo.Emprunt"/>
         <mapping class="ma.fstm.ilisi2.libraryapp.model.bo.Exemplaire"/>

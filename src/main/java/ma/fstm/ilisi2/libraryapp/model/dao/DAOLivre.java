@@ -115,21 +115,35 @@ public class DAOLivre implements IDAOLivre {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            Livre livre = new Livre();
-            livre.setId(L.getId());
-            session.remove(livre);
-            session.flush();
+            session.remove(L);
+            System.out.println("deletion1 "+L.getIsbn());
             tx.commit();
+            System.out.println("deletion2 "+L.getIsbn());
             return true;
         }catch (Exception e){
             assert tx != null;
+            System.out.println("not deleted");
+            System.err.println(e.getClass().getName() + " : " + e.getMessage());
             tx.rollback();
             return false;
         }
     }
 
     @Override
-    public Livre findById(String isbn) {
+    public Livre findById(int id) {
+        Livre livre1 = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            session.beginTransaction();
+            livre1 = session.createQuery("from Livre l where l.id = :id", Livre.class).setParameter("id",id).getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + " : " + e.getMessage());
+        }
+        return livre1;
+    }
+
+    public Livre findByISBN(String isbn) {
         Livre livre1 = null;
         try {
             Session session = HibernateUtil.getSession();

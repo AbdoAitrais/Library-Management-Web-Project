@@ -16,13 +16,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/biblio">
-          Bibliotheque
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/Livre.do">
+          Livres
+        </a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/Adherent.do">
+          Adherent
+        </a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/Emprunt.do">
+          Emprunter
         </a>
         <a class="navbar-brand" size="1px" href="${pageContext.request.contextPath}/session/logout">
           Deconnection(${account.username})
@@ -63,6 +69,7 @@
       <table class="table">
         <thead>
         <tr>
+          <th scope="col">ID</th>
           <th scope="col">ISBN</th>
           <th scope="col">Title</th>
           <th scope="col">Auteur</th>
@@ -74,33 +81,41 @@
         <c:forEach items="${books}" var="book">
         <tbody>
         <tr>
+          <td>${book.id}</td>
           <td>${book.isbn}</td>
           <td>${ book.titre }</td>
           <td>${ book.auteur }</td>
           <td>
             <c:catch var="error">
-            <c:if test="${book.exemplaires != null}">
-              ${book.exemplaires.size()}
-            </c:if>
+              <c:if test="${book.exemplaires != null}">
+                ${book.exemplaires.size()}
+              </c:if>
             </c:catch>
 
             <c:if test="${not empty error}">
-            An error occurred: ${error.message}
+              An error occurred: ${error.message}
             </c:if>
+          </td>
           <td>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal${book.isbn}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                  <form method="post" action="${pageContext.request.contextPath}/biblio/update">
+                  <form method="post" action="${pageContext.request.contextPath}/Livre.do">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
 
-                      <input type="hidden" name="action" value="update" />
+                      <input type="hidden" name="action" value="Modifier" />
+                    <div class="row mb-3">
+                      <label for="idLivreUpdate" class="col-sm-2 col-form-label">Id</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idLivreUpdate" name="idLivre" value="${book.id}">
+                      </div>
+                    </div>
                     <div class="row mb-3">
                       <label for="isbnUpdate" class="col-sm-2 col-form-label">Isbn</label>
                       <div class="col-sm-10">
@@ -117,6 +132,12 @@
                       <label for="authorUpdate" class="col-sm-2 col-form-label">Auteur</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="authorUpdate" name="author" value="${ book.auteur }">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="nbrExampleUpdate" class="col-sm-2 col-form-label">Disponible</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nbrExampleUpdate" name="example" value="${book.exemplaires.size()}">
                       </div>
                     </div>
 
@@ -137,9 +158,9 @@
             </button>
           </td>
           <td>
-            <form method="post" action="${pageContext.request.contextPath}/biblio/delete">
-              <input type="hidden" name="isbn" value="${book.isbn}" />
-              <input type="hidden" name="action" value="delete" />
+            <form method="post" action="${pageContext.request.contextPath}/Livre.do">
+              <input type="hidden" name="idLivre" value="${book.id}" />
+              <input type="hidden" name="action" value="Supprimer" />
               <button type="submit" class="btn btn-outline-dark">Delete</button>
             </form>
           </td>
