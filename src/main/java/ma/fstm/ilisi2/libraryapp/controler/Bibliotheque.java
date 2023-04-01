@@ -68,9 +68,6 @@ public class Bibliotheque extends HttpServlet {
                     req.setAttribute("adherents", serviceAdherent.getAllAdherents());
                     req.setAttribute("books", serviceLivre.retrieveLivreDisponible());
                     req.setAttribute("copies", serviceEmprunt.getAllEmprunts());
-                    for (Emprunt emprunt : serviceEmprunt.getAllEmprunts()) {
-                        System.out.println(emprunt);
-                    }
                     req.getRequestDispatcher("/WEB-INF/empruntlist.jsp").forward(req, resp);
                 }
                 break;

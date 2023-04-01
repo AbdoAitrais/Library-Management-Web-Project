@@ -91,71 +91,14 @@
                 <td>${ emprunt.dateRetour }</td>
                 <td>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal${emprunt.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form method="post" action="${pageContext.request.contextPath}/Emprunt.do">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <input type="hidden" name="action" value="Modifier" />
-                                        <div class="row mb-3">
-                                            <label for="adherent" class="col-sm-2 col-form-label">Adherent</label>
-                                            <select id="adherent" class="form-select" aria-label="Default select example">
-                                                <c:forEach items="${adherents}" var="adherent">
-                                                    <option value="${adherent.id}">
-                                                            ${adherent.prenomAdherent} ${adherent.nomAdherent}
-                                                    </option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="exemplaire" class="col-sm-2 col-form-label">Exemplaire</label>
-                                            <select id="exemplaire" class="form-select" aria-label="Default select example">
-                                                <c:forEach items="${copies}" var="emprunt">
-                                                    <option value="${emprunt.exemplaire.id}">
-                                                            ${emprunt.exemplaire.livre.titre}
-                                                    </option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="dateEmpr" class="col-sm-2 col-form-label">Date d'emprunt</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" class="form-control" id="dateEmpr" name="dateEmprunt">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="dateRet" class="col-sm-2 col-form-label">Date de retour</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" class="form-control" id="dateRet" name="dateRetour">
-                                            </div>
-                                        </div>
-
-                                        <!-- Button trigger modal -->
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${emprunt.id}">
-                        Update
-                    </button>
+                    <form method="post" action="${pageContext.request.contextPath}/Emprunt.do">
+                        <input type="hidden" name="idemprunt" value="${emprunt.id}" />
+                        <input type="hidden" name="action" value="Retourner" />
+                        <button type="submit" class="btn btn-outline-primary">Return</button>
+                    </form>
                 </td>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/emprunt.do">
+                    <form method="post" action="${pageContext.request.contextPath}/Emprunt.do">
                         <input type="hidden" name="idemprunt" value="${emprunt.id}" />
                         <input type="hidden" name="action" value="Supprimer" />
                         <button type="submit" class="btn btn-outline-dark">Delete</button>
