@@ -7,27 +7,26 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import ma.fstm.ilisi2.libraryapp.model.bo.Account;
 import ma.fstm.ilisi2.libraryapp.model.bo.Adherent;
+import ma.fstm.ilisi2.libraryapp.model.bo.Emprunt;
 import ma.fstm.ilisi2.libraryapp.model.bo.Livre;
-import ma.fstm.ilisi2.libraryapp.model.dao.DAOLivre;
 import ma.fstm.ilisi2.libraryapp.model.services.ServiceAdherent;
+import ma.fstm.ilisi2.libraryapp.model.services.ServiceEmprunt;
 import ma.fstm.ilisi2.libraryapp.model.services.ServiceLivre;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 
 public class Bibliotheque extends HttpServlet {
     private ServiceLivre serviceLivre;
     private ServiceAdherent serviceAdherent;
+    private ServiceEmprunt serviceEmprunt;
 
     @Override
     public void init() throws ServletException {
         super.init();
         serviceLivre = new ServiceLivre();
         serviceAdherent = new ServiceAdherent();
+        serviceEmprunt = new ServiceEmprunt();
     }
 
     @Override
@@ -64,6 +63,16 @@ public class Bibliotheque extends HttpServlet {
                 }
                 break;
             case "/Emprunt.do":
+                action = req.getPathInfo();
+                if (action == null) {
+                    req.setAttribute("adherents", serviceAdherent.getAllAdherents());
+                    req.setAttribute("books", serviceLivre.retrieveLivreDisponible());
+                    req.setAttribute("copies", serviceEmprunt.getAllEmprunts());
+                    for (Emprunt emprunt : serviceEmprunt.getAllEmprunts()) {
+                        System.out.println(emprunt);
+                    }
+                    req.getRequestDispatcher("/WEB-INF/empruntlist.jsp").forward(req, resp);
+                }
                 break;
         }
     }
@@ -128,10 +137,26 @@ public class Bibliotheque extends HttpServlet {
             case "/Emprunt.do":
                 switch (req.getParameter("action")){
                     case "Emprunter":
-
+                        serviceEmprunt.createEmprunt(Integer.parseInt(req.getParameter("empruntexemplaire")),
+                                Integer.parseInt(req.getParameter("idAdherent")),
+                                req.getParameter("dateRetour"));
                         break;
                     case "Retourner":
+                        serviceEmprunt.rendreLivre(Integer.parseInt(req.getParameter("idemprunt")));
+                        break;
+                    case "Supprimer":
+                        serviceEmprunt.deleteEmprunt(Integer.parseInt(req.getParameter("idemprunt")));
+                        break;
+                    default:
+                        req.setAttribute("adherents", serviceAdherent.getAllAdherents());
+                        req.setAttribute("books", serviceLivre.retrieveLivreDisponible());
+                        req.setAttribute("copies", serviceEmprunt.getAllEmprunts());
+                        for (Emprunt emprunt : serviceEmprunt.getAllEmprunts()) {
+                            System.out.println(emprunt);
+                        }
+                        req.getRequestDispatcher("/WEB-INF/empruntlist.jsp").forward(req, resp);
                 }
+                resp.sendRedirect(req.getContextPath() + "/Emprunt.do");
         }
     }
 }

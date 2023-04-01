@@ -78,8 +78,9 @@
           <th scope="col"></th>
         </tr>
         </thead>
-        <c:forEach items="${books}" var="book">
+
         <tbody>
+        <c:forEach items="${books}" var="book">
         <tr>
           <td>${book.id}</td>
           <td>${book.isbn}</td>
@@ -165,8 +166,9 @@
             </form>
           </td>
         </tr>
-        </tbody>
         </c:forEach>
+        </tbody>
+
     </table>
 
     </div>

@@ -63,8 +63,9 @@
             <th scope="col"></th>
         </tr>
         </thead>
-        <c:forEach items="${adherents}" var="adherent">
+
             <tbody>
+            <c:forEach items="${adherents}" var="adherent">
             <tr>
                 <td>${adherent.id}</td>
                 <td>${adherent.nomAdherent}</td>
@@ -126,8 +127,9 @@
                     </form>
                 </td>
             </tr>
+            </c:forEach>
             </tbody>
-        </c:forEach>
+
     </table>
 
 </div>

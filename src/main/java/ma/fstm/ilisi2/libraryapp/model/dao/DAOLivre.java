@@ -5,8 +5,10 @@ import ma.fstm.ilisi2.libraryapp.model.bo.Livre;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DAOLivre implements IDAOLivre {
@@ -154,6 +156,40 @@ public class DAOLivre implements IDAOLivre {
             System.err.println(e.getClass().getName() + " : " + e.getMessage());
         }
         return livre1;
+    }
+
+    public Collection<Livre> getAvailableLivres(){
+        Collection<Livre> availableBooks = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            session.beginTransaction();
+            String hql = "FROM Livre b JOIN b.exemplaires c WHERE c.disponible = true";
+            Query<Livre> query = session.createQuery(hql,Livre.class);
+            availableBooks = query.list();
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + " : " + e.getMessage());
+        }
+        return availableBooks;
+    }
+
+    public List<Exemplaire> getAvailableExamplaires(Livre livre){
+        List<Exemplaire> availableCopies = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            session.beginTransaction();
+            String hql = "FROM Exemplaire c WHERE c.livre.id = :idLivre AND c.disponible = true";
+            Query<Exemplaire> query = session.createQuery(hql,Exemplaire.class);
+            query.setParameter("idLivre", livre.getId());
+            availableCopies = query.list();
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + " : " + e.getMessage());
+        }
+        if (availableCopies == null) {
+            return Collections.emptyList();
+        }
+        return availableCopies;
     }
 
 }

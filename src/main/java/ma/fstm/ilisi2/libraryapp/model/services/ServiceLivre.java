@@ -1,11 +1,13 @@
 package ma.fstm.ilisi2.libraryapp.model.services;
 
 
+import ma.fstm.ilisi2.libraryapp.model.bo.Exemplaire;
 import ma.fstm.ilisi2.libraryapp.model.bo.Livre;
 import ma.fstm.ilisi2.libraryapp.model.dao.DAOExemplaire;
 import ma.fstm.ilisi2.libraryapp.model.dao.DAOLivre;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
@@ -49,5 +51,11 @@ public class ServiceLivre {
             throw new IllegalArgumentException("Le livre avec l'ID " + id + " n'existe pas!");
         }
     }
-
+    public Exemplaire retrieveExemplaireDispo(int idLivre) {
+        Livre livre = getLivreById(idLivre);
+        return ( daoLivre.getAvailableExamplaires(livre).isEmpty() ? null : (Exemplaire) ((List<?>) daoLivre.getAvailableExamplaires(livre)).get(0));
+    }
+    public List<Livre> retrieveLivreDisponible() {
+        return (List<Livre>) daoLivre.getAvailableLivres();
+    }
 }
